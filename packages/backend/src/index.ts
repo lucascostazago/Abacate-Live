@@ -2,10 +2,15 @@ import { Elysia } from 'elysia'
 import routes from './routes'
 import cors from '@elysiajs/cors'
 
+// Configurar origens permitidas baseado no ambiente
+const allowedOrigins = process.env.FRONTEND_URL 
+  ? [process.env.FRONTEND_URL, 'http://localhost:5173', 'http://0.0.0.0:5173']
+  : true // Em produção sem FRONTEND_URL, aceita qualquer origem
+
 const app = new Elysia()
   .use(
     cors({
-      origin: ['http://localhost:5173', 'http://0.0.0.0:5173'],
+      origin: allowedOrigins,
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization'],
       exposeHeaders: '*',
