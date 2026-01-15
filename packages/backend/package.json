@@ -1,8 +1,12 @@
 {
   "name": "backend",
+  "main": "src/index.ts",
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "start": "bun run src/index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
